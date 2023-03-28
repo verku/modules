@@ -37,20 +37,17 @@ process MITOHIFI_MITOHIFI {
     //               e.g. https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf
     //               Each software used MUST provide the software name and version number in the YAML version file (versions.yml)
     // TODO nf-core: It MUST be possible to pass additional parameters to the tool as a command-line string via the "task.ext.args" directive
-    // TODO nf-core: If the tool supports multi-threading then you MUST provide the appropriate parameter
-    //               using the Nextflow "task" variable e.g. "--threads $task.cpus"
-    // TODO nf-core: Please replace the example samtools command below with your module's command
-    // TODO nf-core: Please indent the command appropriately (4 spaces!!) to help with readability ;)
     """
-    samtools \\
-        sort \\
-        $args \\
-        -@ $task.cpus \\
-        $bam
+    mitohifi.py \\
+        -c $fasta \\
+        -f $mitoref_fasta \\
+        -g $mitoref_gb \\
+        -t $task.cpus \\
+        $args
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mitohifi: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//' ))
+        mitohifi: \$( mitohifi.py --version 2>&1 | head -n1 | sed 's/^.*MitoHiFi //; s/ .*\$//' )
     END_VERSIONS
     """
 }
