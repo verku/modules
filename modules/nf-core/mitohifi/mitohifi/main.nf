@@ -34,7 +34,7 @@ process MITOHIFI_MITOHIFI {
     path("${prefix}_final_mitogenome.fasta"), emit: fasta
     path("${prefix}_final_mitogenome.gb")   , emit: gb
     path("${prefix}_contigs_stats.tsv")     , emit: tsv
-    path "versions.yml"                   , emit: versions
+    path "versions.yml"                     , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -56,6 +56,10 @@ process MITOHIFI_MITOHIFI {
         -g $mitoref_gb \\
         -t $task.cpus \\
         $args
+
+    mv final_mitogenome.fasta ${prefix}_final_mitogenome.fasta
+    mv final_mitogenome.gb ${prefix}_final_mitogenome.gb
+    mv contigs_stats.tsv ${prefix}_contigs_stats.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
