@@ -1,0 +1,53 @@
+name: "mitohifi_mitohifi"
+description: Assemble mitochondrial genomes from PacBio HiFi reads
+keywords:
+  - assembly
+  - mitochondrial genome
+  - PacBio HiFi
+tools:
+  - "mitohifi":
+      description: Assemble mitochondrial genomes from PacBio HiFi reads
+      homepage: https://github.com/marcelauliano/MitoHiFi
+      documentation: https://github.com/marcelauliano/MitoHiFi
+      tool_dev_url: https://github.com/marcelauliano/MitoHiFi
+      doi: "10.1101/2022.12.23.521667"
+      licence: ["MIT"]
+
+input:
+  - hifi_contigs:
+      type: file
+      description: Fasta file containing assembled PacBio HiFi contigs
+      pattern: "*.{fasta,fa}"
+  - hifi_reads:
+      type: file
+      description: Fasta file containing raw PacBio HiFi reads
+      pattern: "*.{fasta,fa}"
+  - mitoref_fasta:
+      type: file
+      description: Mitochondrial genome in Fasta format
+      pattern: "*.{fasta,fa}"
+  - mitoref_gb:
+      type: file
+      description: Mitochondrial genome in Genbank format
+      pattern: "*.gb"
+
+output:
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+  - fasta:
+      type: file
+      description: The final mitochondrial genome circularized and rotated to start at tRNA-Phe
+      pattern: "*_final_mitogenome.fasta"
+  - gb:
+      type: file
+      description: The final mitochondrial genome annotated in GenBank format
+      pattern: "*_final_mitogenome.gb"
+  - stats:
+      type: file
+      description: Statistics of the assembled mitochondrial genomes
+      pattern: "*_contigs_stats.tsv"
+
+authors:
+  - "@verku"
