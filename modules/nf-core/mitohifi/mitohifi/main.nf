@@ -8,6 +8,8 @@ process MITOHIFI_MITOHIFI {
         'docker://biocontainers/mitohifi:2.2_cv1':
         'docker.io/biocontainers/mitohifi:2.2_cv1' }"
 
+    // TODO: check Hifiasm module how different, mutually exclusive, input files are implemented
+    // https://github.com/nf-core/modules/blob/master/modules/nf-core/hifiasm/main.nf
     input:
     tuple val(meta), path(fasta)
     path mitoref_fasta
