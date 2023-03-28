@@ -14,6 +14,11 @@ tools:
       licence: ["MIT"]
 
 input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', contigs:false, reads:true ]
   - hifi_contigs:
       type: file
       description: Fasta file containing assembled PacBio HiFi contigs
@@ -32,10 +37,11 @@ input:
       pattern: "*.gb"
 
 output:
-  - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', contigs:false, reads:true ]
   - fasta:
       type: file
       description: The final mitochondrial genome circularized and rotated to start at tRNA-Phe
