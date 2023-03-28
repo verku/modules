@@ -2150,6 +2150,10 @@ miranda:
   - modules/nf-core/miranda/**
   - tests/modules/nf-core/miranda/**
 
+mitohifi/mitohifi:
+  - modules/nf-core/mitohifi/mitohifi/**
+  - tests/modules/nf-core/mitohifi/mitohifi/**
+
 mlst:
   - modules/nf-core/mlst/**
   - tests/modules/nf-core/mlst/**
@@ -3541,10 +3545,6 @@ whamg:
   - modules/nf-core/whamg/**
   - tests/modules/nf-core/whamg/**
 
-wisecondorx/convert:
-  - modules/nf-core/wisecondorx/convert/**
-  - tests/modules/nf-core/wisecondorx/convert/**
-
 windowmasker/mk_counts:
   - modules/nf-core/windowmasker/mk_counts/**
   - tests/modules/windowmasker/mk_counts/**
@@ -3552,6 +3552,10 @@ windowmasker/mk_counts:
 windowmasker/ustat:
   - modules/nf-core/windowmasker/ustat/**
   - tests/modules/windowmasker/ustat/**
+
+wisecondorx/convert:
+  - modules/nf-core/wisecondorx/convert/**
+  - tests/modules/nf-core/wisecondorx/convert/**
 
 yahs:
   - modules/nf-core/yahs/**
