@@ -14,9 +14,9 @@ process MITOHIFI_MITOHIFI {
     path mitoref_gb
 
     output:
-    path("${prefix}_final_mitogenome.fasta"), emit: fasta
-    path("${prefix}_final_mitogenome.gb")   , emit: gb
-    path("${prefix}_contigs_stats.tsv")     , emit: tsv
+    tuple val(meta), path("${prefix}_final_mitogenome.fasta"), emit: fasta
+    tuple val(meta), path("${prefix}_final_mitogenome.gb")   , emit: gb
+    tuple val(meta), path("${prefix}_contigs_stats.tsv")     , emit: tsv
     path "versions.yml"                     , emit: versions
 
     when:
