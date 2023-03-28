@@ -26,19 +26,15 @@ process MITOHIFI_MITOHIFI {
         'docker.io/biocontainers/mitohifi:2.2_cv1' }"
 
     input:
-    // TODO nf-core: Where applicable all sample-specific information e.g. "id", "single_end", "read_group"
-    //               MUST be provided as an input via a Groovy Map called "meta".
-    //               This information may not be required in some instances e.g. indexing reference genome files:
-    //               https://github.com/nf-core/modules/blob/master/modules/nf-core/bwa/index/main.nf
-    // TODO nf-core: Where applicable please provide/convert compressed files as input/output
-    //               e.g. "*.fastq.gz" and NOT "*.fastq", "*.bam" and NOT "*.sam" etc.
-    tuple val(meta), path(bam)
+    tuple val(meta), path(fasta)
+    path mitoref_fasta
+    path mitoref_gb
 
     output:
-    // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
-    tuple val(meta), path("*.bam"), emit: bam
-    // TODO nf-core: List additional required output channels/values here
-    path "versions.yml"           , emit: versions
+    path("${prefix}_final_mitogenome.fasta"), emit: fasta
+    path("${prefix}_final_mitogenome.gb")   , emit: gb
+    path("${prefix}_contigs_stats.tsv")     , emit: tsv
+    path "versions.yml"                   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -48,9 +44,9 @@ process MITOHIFI_MITOHIFI {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     if (meta.contigs) {
-        input_file_args = "-c ${contig_fasta}"
+        input_file_args = "-c ${fasta}"
     } else {
-        input_file_args = "-r ${reads_fasta}"
+        input_file_args = "-r ${fasta}"
     }
 
     """
