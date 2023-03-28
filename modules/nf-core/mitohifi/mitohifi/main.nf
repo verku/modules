@@ -66,4 +66,16 @@ process MITOHIFI_MITOHIFI {
         mitohifi: \$( mitohifi.py --version 2>&1 | head -n1 | sed 's/^.*MitoHiFi //; s/ .*\$//' )
     END_VERSIONS
     """
+
+    stub:
+    """
+    touch sample_final_mitogenome.fasta
+    touch sample_final_mitogenome.gb
+    touch sample_contigs_stats.tsv
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        mitohifi: \$( mitohifi.py --version 2>&1 | head -n1 | sed 's/^.*MitoHiFi //; s/ .*\$//' )
+    END_VERSIONS
+    """
 }
