@@ -28,9 +28,9 @@ process MITOHIFI_MITOHIFI {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    if (meta.contigs) {
+    if( meta.contigs ) {
         input_file_args = "-c ${fasta}"
-    } else {
+    } else if( meta.reads ) {
         input_file_args = "-r ${fasta}"
     }
 
