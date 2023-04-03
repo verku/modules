@@ -2,11 +2,10 @@ process MITOHIFI_MITOHIFI {
     tag "$meta.id"
     label 'process_medium'
 
-    // MitoHifi does not exist as conda package
-    // A Docker image is available at the biocontainers Dockerhub
+    // Docker image available at the biocontainers Dockerhub
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'docker://biocontainers/mitohifi:2.2_cv1':
-        'docker.io/biocontainers/mitohifi:2.2_cv1' }"
+        'docker://biocontainers/mitohifi:3.0.0_cv1':
+        'docker.io/biocontainers/mitohifi:3.0.0_cv1' }"
 
     // TODO: check Hifiasm module how different, mutually exclusive, input files are implemented
     // https://github.com/nf-core/modules/blob/master/modules/nf-core/hifiasm/main.nf
